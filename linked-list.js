@@ -91,6 +91,17 @@ const linkedListFactory = () => {
 
     }
 
+    const removeAt = index => {
+        if (index === 0){
+            let newHead = at(1);
+            headNode = newHead;
+        } else {
+            let nodePreviousToRemoved = at(index-1);
+            let nodeNextToRemoved = at(index+1);
+            nodePreviousToRemoved.nextNode = nodeNextToRemoved;
+        }
+    }
+
     const toString = () => {
         let current = headNode;
         let s = ''
@@ -107,7 +118,7 @@ const linkedListFactory = () => {
         console.log(s)
     }
 
-    return {tail, head, size, append, prepend, at, pop, contains, find, insertAt, toString}
+    return {tail, head, size, append, prepend, at, pop, contains, find, insertAt, removeAt, toString}
 }
 
 let myList = linkedListFactory();
@@ -126,4 +137,6 @@ console.log('find', myList.find(7))
 console.log('contains', myList.contains(7))
 myList.pop()
 myList.insertAt(3,4)
+myList.toString()
+myList.removeAt(0)
 myList.toString()
