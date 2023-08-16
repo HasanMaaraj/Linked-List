@@ -62,6 +62,16 @@ const linkedListFactory = () => {
         beforeLastNode.nextNode = null;
     }
 
+    const contains = value => {
+        if (!headNode) return false;
+        let current = headNode;
+        while (current) {
+            if (current.value === value) return true;
+            current = current.nextNode;
+        }
+        return false;
+    }
+
     const toString = () => {
         let current = headNode;
         let s = ''
@@ -78,7 +88,7 @@ const linkedListFactory = () => {
         console.log(s)
     }
 
-    return {tail, head, size, append, prepend, at, pop, toString}
+    return {tail, head, size, append, prepend, at, pop, contains, toString}
 }
 
 let myList = linkedListFactory();
@@ -87,11 +97,12 @@ myList.append(4);
 myList.append(42);
 myList.append(2);
 myList.append(6);
-console.log('at',myList.at(1))
+console.log('at', myList.at(1))
 console.log('head', myList.head())
 myList.prepend(5);
-console.log('head',myList.head())
+console.log('head', myList.head())
 myList.toString();
-console.log('size',myList.size())
+console.log('size', myList.size())
+console.log('contains', myList.contains(7))
 myList.pop()
 myList.toString()
