@@ -47,7 +47,7 @@ const linkedListFactory = () => {
     }
 
     const at = index => {
-        if (index > size()-1 || index < 0) throw RangeError('index out of range');
+        if (index > size() || index < 0) throw RangeError('index out of range');
         let current = headNode;
         for (let i = 0; i < index; i++) {
             current = current.nextNode;
@@ -81,6 +81,16 @@ const linkedListFactory = () => {
         return null;
     }
 
+    const insertAt = (value, index) => {
+        let newNode = nodeFactory();
+        newNode.value = value;
+        let nodePreviousToNew = at(index-1);
+        let nodeNextToNew = at(index);
+        newNode.nextNode = nodeNextToNew;
+        nodePreviousToNew.nextNode = newNode;
+
+    }
+
     const toString = () => {
         let current = headNode;
         let s = ''
@@ -97,7 +107,7 @@ const linkedListFactory = () => {
         console.log(s)
     }
 
-    return {tail, head, size, append, prepend, at, pop, contains, find, toString}
+    return {tail, head, size, append, prepend, at, pop, contains, find, insertAt, toString}
 }
 
 let myList = linkedListFactory();
@@ -115,4 +125,5 @@ console.log('size', myList.size())
 console.log('find', myList.find(7))
 console.log('contains', myList.contains(7))
 myList.pop()
+myList.insertAt(3,4)
 myList.toString()
