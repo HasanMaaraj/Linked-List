@@ -5,15 +5,19 @@ const linkedListFactory = () => {
             nextNode: null,
         }
     }
-    let head = null;
+    let headNode = null;
 
     const tail = () => {
-        if (head === null) return null;
-        let current = head;
+        if (headNode === null) return null;
+        let current = headNode;
         while (current.nextNode) {
             current = current.nextNode;
         }
         return current;
+    }
+
+    const head = () => {
+        return headNode;
     }
 
     const append = value => {
@@ -21,11 +25,11 @@ const linkedListFactory = () => {
         let newNode = nodeFactory();
         newNode.value = value;
         if (tailNode) tailNode.nextNode = newNode;
-        else head = newNode;
+        else headNode = newNode;
     }
 
     const toString = () => {
-        let current = head;
+        let current = headNode;
         let s = ''
         while (true) {
             if (current) {
@@ -40,7 +44,7 @@ const linkedListFactory = () => {
         console.log(s)
     }
 
-    return {tail, append, toString}
+    return {tail, head, append, toString}
 }
 
 let myList = linkedListFactory();
