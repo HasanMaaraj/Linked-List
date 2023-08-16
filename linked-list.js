@@ -118,7 +118,21 @@ const linkedListFactory = () => {
         console.log(s)
     }
 
-    return {tail, head, size, append, prepend, at, pop, contains, find, insertAt, removeAt, toString}
+    const reverse = () => {
+        let pre = headNode;
+        let current = headNode.nextNode;
+        pre.nextNode = null;
+        let next = current.nextNode;
+        while (current) {
+            next = current.nextNode;
+            current.nextNode = pre;
+            pre = current;
+            current = next;
+        }
+        headNode = pre;
+    }
+
+    return {tail, head, size, append, prepend, at, pop, contains, find, insertAt, removeAt, reverse, toString}
 }
 
 let myList = linkedListFactory();
@@ -140,3 +154,5 @@ myList.insertAt(3,4)
 myList.toString()
 myList.removeAt(0)
 myList.toString()
+myList.reverse();
+myList.toString();
