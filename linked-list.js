@@ -72,6 +72,15 @@ const linkedListFactory = () => {
         return false;
     }
 
+    const find = value => {
+        if (!headNode) return null;
+        let listSize = size();
+        for (let i = 0; i < listSize; i++) {
+            if (at(i).value === value) return i; 
+        }
+        return null;
+    }
+
     const toString = () => {
         let current = headNode;
         let s = ''
@@ -88,7 +97,7 @@ const linkedListFactory = () => {
         console.log(s)
     }
 
-    return {tail, head, size, append, prepend, at, pop, contains, toString}
+    return {tail, head, size, append, prepend, at, pop, contains, find, toString}
 }
 
 let myList = linkedListFactory();
@@ -103,6 +112,7 @@ myList.prepend(5);
 console.log('head', myList.head())
 myList.toString();
 console.log('size', myList.size())
+console.log('find', myList.find(7))
 console.log('contains', myList.contains(7))
 myList.pop()
 myList.toString()
