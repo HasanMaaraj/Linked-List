@@ -46,6 +46,15 @@ const linkedListFactory = () => {
         headNode = newNode;
     }
 
+    const at = index => {
+        if (index > size()-1 || index < 0) throw RangeError('index out of range');
+        let current = headNode;
+        for (let i = 0; i < index; i++) {
+            current = current.nextNode;
+        }
+        return current
+    }
+
     const toString = () => {
         let current = headNode;
         let s = ''
@@ -62,7 +71,7 @@ const linkedListFactory = () => {
         console.log(s)
     }
 
-    return {tail, head, size, append, prepend, toString}
+    return {tail, head, size, append, prepend, at, toString}
 }
 
 let myList = linkedListFactory();
@@ -71,6 +80,7 @@ myList.append(4);
 myList.append(42);
 myList.append(2);
 myList.append(6);
+console.log(myList.at(1))
 console.log(myList.head())
 myList.prepend(5);
 console.log(myList.head())
