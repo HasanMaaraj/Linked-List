@@ -20,6 +20,17 @@ const linkedListFactory = () => {
         return headNode;
     }
 
+    const size = () => {
+        if (headNode === null) return 0;
+        let current = headNode;
+        let i = 1;
+        while (current.nextNode) {
+            current = current.nextNode;
+            i++;
+        }
+        return i;
+    }
+
     const append = value => {
         let tailNode = tail();
         let newNode = nodeFactory();
@@ -44,7 +55,7 @@ const linkedListFactory = () => {
         console.log(s)
     }
 
-    return {tail, head, append, toString}
+    return {tail, head, size, append, toString}
 }
 
 let myList = linkedListFactory();
@@ -53,5 +64,5 @@ myList.append(4);
 myList.append(42);
 myList.append(2);
 myList.append(6);
-myList.append(6);
 myList.toString();
+console.log(myList.size())
