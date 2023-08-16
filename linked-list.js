@@ -55,6 +55,13 @@ const linkedListFactory = () => {
         return current
     }
 
+    const pop = () => {
+        let tailNode = tail();
+        let listSize = size();
+        let beforeLastNode = at(listSize-2);
+        beforeLastNode.nextNode = null;
+    }
+
     const toString = () => {
         let current = headNode;
         let s = ''
@@ -71,7 +78,7 @@ const linkedListFactory = () => {
         console.log(s)
     }
 
-    return {tail, head, size, append, prepend, at, toString}
+    return {tail, head, size, append, prepend, at, pop, toString}
 }
 
 let myList = linkedListFactory();
@@ -80,9 +87,11 @@ myList.append(4);
 myList.append(42);
 myList.append(2);
 myList.append(6);
-console.log(myList.at(1))
-console.log(myList.head())
+console.log('at',myList.at(1))
+console.log('head', myList.head())
 myList.prepend(5);
-console.log(myList.head())
+console.log('head',myList.head())
 myList.toString();
-console.log(myList.size())
+console.log('size',myList.size())
+myList.pop()
+myList.toString()
